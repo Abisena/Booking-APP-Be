@@ -25,12 +25,12 @@ func main() {
     }
     defer db.Close()
     // Convert *sqlx.DB to *sql.DB
-    sqlDB := db.DB
+    // sqlDB := db.DB
 	// End Close
 
 	fmt.Println("########### Welcome to Booking App ###########")
 
-	firstName, lastName, email, beliTiket := utils.GetUser(sqlDB)
+	firstName, lastName, email, beliTiket := utils.GetUser()
 	isValidName, isValidEmail, isValidTicketNumber := helper.ValidasiData(firstName, lastName, email, beliTiket)
 	
 

@@ -1,16 +1,13 @@
 package utils
 
 import (
-	"booking-app/auth"
-	"database/sql"
 	"fmt"
 )
 
-func GetUser(db *sql.DB) (string, string, string, uint) {
+func GetUser() (string, string, string, uint) {
 	var firstName string
 	var lastName string
 	var email string
-	var password string
 	var beliTiket uint
 
 	fmt.Print("Masukan field dibawah ini\n")
@@ -22,14 +19,9 @@ func GetUser(db *sql.DB) (string, string, string, uint) {
 
 	fmt.Println("Masukan Alamat email:")
 	fmt.Scan(&email)
-	
-	fmt.Println("Masukan Alamat password:")
-	fmt.Scan(&password)
 
 	fmt.Println("Masukan Jumlah tiket:")
 	fmt.Scan(&beliTiket)
-
-	auth.Register(db, firstName, email, password)
 
 	return firstName, lastName, email, beliTiket
 }
