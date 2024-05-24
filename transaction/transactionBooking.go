@@ -1,6 +1,8 @@
 package transaction
 
-import "fmt"
+import (
+	"fmt"
+)
 
 const jumlahTiket uint = 250
 

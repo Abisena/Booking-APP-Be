@@ -1,11 +1,13 @@
 package main
 
 import (
+	"booking-app/database"
 	"booking-app/helper"
 	"booking-app/sendtiket"
 	"booking-app/transaction"
 	"booking-app/utils"
 	"fmt"
+	"log"
 	"sync"
 )
 
@@ -15,14 +17,26 @@ var wg = sync.WaitGroup{}
 var sisaTiket uint = 250
 
 func main() {
+	// Konecksi Database
+	db, err := database.Connect()
+    if err != nil {
+      log.Fatal(err)
+      return
+    }
+    defer db.Close()
+    // Convert *sqlx.DB to *sql.DB
+    sqlDB := db.DB
+	// End Close
+
 	fmt.Println("########### Welcome to Booking App ###########")
 
-	firstName, lastName, email, beliTiket := utils.GetUser()
+	firstName, lastName, email, beliTiket := utils.GetUser(sqlDB)
 	isValidName, isValidEmail, isValidTicketNumber := helper.ValidasiData(firstName, lastName, email, beliTiket)
 	
 
 	if isValidName && isValidEmail && isValidTicketNumber {
 		transaction.TransactionBooking(firstName, lastName, email, beliTiket)
+	
 
 		wg.Add(1)
 		go sendtiket.SendTiketUser(firstName, lastName, email, beliTiket)
@@ -43,12 +57,3 @@ func main() {
 	}
 	wg.Wait()
 }
-
-
-// func GetFirstName() []string {
-// 	firstNames := []string{}
-// 	for _, booking := range transaction.Bookings {
-// 		firstNames = append(firstNames, booking.firstName)
-// 	}
-// 	return firstNames
-// }
