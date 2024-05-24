@@ -1,6 +1,7 @@
 package sendtiket
 
 import (
+	"booking-app/utils"
 	"fmt"
 	"sync"
 	"time"
@@ -14,6 +15,7 @@ func SendTiketUser(firstName string, lastName string, email string, beliTiket ui
 	var tiket = fmt.Sprintf("%v tikets akan diberikan ke %v %v", beliTiket, firstName, lastName)
 	fmt.Println("#################")
 	fmt.Printf("Sending ticket:\n %v \nto email address %v\n", tiket, email)
+	utils.SendMail("Booking-app", "Thank You for Booking app in this web", []string{email})
 	fmt.Println("#################")
 	wg.Done()
 }
