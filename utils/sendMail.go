@@ -5,6 +5,7 @@ import (
 	"net/smtp"
 )
 
+
 func SendMail(subject string, html string, to []string){
 	auth := smtp.PlainAuth(
 		"",
