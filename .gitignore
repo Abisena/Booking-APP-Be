@@ -1,4 +1,9 @@
-*.env
-*go.mod
-*go.sum
+# Ignore all .env files
+.env/*
+
+# Ignore go.mod and go.sum files
+go.mod
+go.sum
+
+# Ignore all .txt files
 *.txt

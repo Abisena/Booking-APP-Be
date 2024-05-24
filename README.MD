@@ -13,10 +13,6 @@
 
 1. Ini masih dalam Pengembangan
 
-## Kontribusi
-
-Terima kasih atas kontribusi Anda! Jika Anda ingin membantu proyek ini, silakan buka issue atau buat pull request.
-
 ## Tim Pengembang
 
 - [Abisena](https://github.com/Abisena)
