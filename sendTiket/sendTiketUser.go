@@ -17,18 +17,7 @@ func SendTiketUser(firstName string, lastName string, email string, beliTiket ui
 	var tiket = fmt.Sprintf("%v tikets akan diberikan ke %v %v", beliTiket, firstName, lastName)
 	fmt.Println("#################")
 	fmt.Printf("Sending ticket:\n %v \nto email address %v\n", tiket, email)
-
-	emailData := utils.EmailData{
-		Subject: "Booking app",
-		Body:    "Thank You for Booking in this Web",
-		To:      []string{email},
-	}
-
-	err := utils.SendMail(emailData)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
+	utils.SendMail("Booking App", "Thank You for Booking in this Web Site", []string{email})
 	fmt.Println("#################")
 	wg.Done()
 }
